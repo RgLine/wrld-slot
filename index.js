@@ -1,4 +1,3 @@
-require('dotenv').config();
 const {
   Client,
   GatewayIntentBits,
@@ -15,9 +14,9 @@ const {
 const Database = require('better-sqlite3');
 const { createCanvas, loadImage } = require('canvas');
 
-const BOT_TOKEN        = process.env.BOT_TOKEN;
-const CLIENT_ID        = process.env.CLIENT_ID;
-const DEFAULT_PREFIX   = process.env.DEFAULT_PREFIX || '!';
+const TOKEN = process.env.DISCORD_TOKEN;
+const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
+const DEFAULT_PREFIX = 'wrld'; // Default prefix
 
 const client = new Client({
   intents: [
@@ -136,10 +135,10 @@ const payouts = {
   '🍒🍒🍒': 2,
   '🍊🍊🍊': 5,
   '🍋🍋🍋': 7,
-  '🍇🍇🍇': 15,
+  '🍇🍇🍇': 12,
   '🔔🔔🔔': 25,
-  '💎💎💎': 30,
-  '7️⃣7️⃣7️⃣': 50
+  '💎💎💎': 50,
+  '7️⃣7️⃣7️⃣': 100
 };
 
 const commands = [
@@ -266,7 +265,7 @@ if (cmd === 'setsaldo' || cmd === 'addsaldo') {
 
   if (cmd === 'balance' || cmd === 'cash') {
     const u = getUser(msg.author.id);
-    return msg.reply(`💵 | ${msg.author}, your balance: **${u.wrldcash.toLocaleString()} WRLD Balance**`);
+    return msg.reply(`🔹 | ${msg.author}, your balance: **${u.wrldcash.toLocaleString()} WRLD Balance**`);
   }
 
   if (cmd === 'give') {
@@ -336,10 +335,10 @@ if (cmd === 'setsaldo' || cmd === 'addsaldo') {
     const won = (['h','heads'].includes(choice) && result === 'h') || (['t','tails'].includes(choice) && result === 't');
     if (won) {
       db.prepare('UPDATE users SET wrldcash = wrldcash + ? WHERE id = ?').run(bet, msg.author.id);
-      return msg.reply(`${msg.author} placed a bet of 💵 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you win 🟦 ${(bet * 2).toLocaleString()} WRLD Balance!`);
+      return msg.reply(`${msg.author} placed a bet of 🟦 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you win 🟦 ${(bet * 2).toLocaleString()} WRLD Balance!`);
     } else {
       db.prepare('UPDATE users SET wrldcash = wrldcash - ? WHERE id = ?').run(bet, msg.author.id);
-      return msg.reply(`${msg.author} placed a bet of 💵 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you lose this round... :c`);
+      return msg.reply(`${msg.author} placed a bet of 🟦 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you lose this round... :c`);
     }
   }
 
@@ -360,7 +359,7 @@ if (cmd === 'setsaldo' || cmd === 'addsaldo') {
       WHERE id = ?`)
       .run(reward, streak, now, getCrate, msg.author.id);
     const embed = new EmbedBuilder()
-      .setDescription(`💰 Here's your daily reward 💵 **${reward.toLocaleString()} WRLD Balance!**\n🔁 Current streak: **${streak} days!**`);
+      .setDescription(`💰 Here's your daily reward 🟦 **${reward.toLocaleString()} WRLD Balance!**\n🔁 Current streak: **${streak} days!**`);
     if (getCrate) embed.addFields({ name: '📦 Weapon Crate', value: 'You received 1 weapon crate!' });
     return msg.reply({ embeds: [embed] });
   }
@@ -501,7 +500,7 @@ Balance: **${data.wrldcash.toLocaleString()} WRLD Balance**
 
     if (cmd === 'balance') {
       const u = getUser(user.id);
-      return interaction.reply(`💵 Your balance: **${u.wrldcash.toLocaleString()} WRLD Balance**`);
+      return interaction.reply(`🔹 Your balance: **${u.wrldcash.toLocaleString()} WRLD Balance**`);
     }
 
     if (cmd === 'give') {
@@ -595,10 +594,10 @@ Balance: **${data.wrldcash.toLocaleString()} WRLD Balance**
       const won = (['h','heads'].includes(choice) && result === 'h') || (['t','tails'].includes(choice) && result === 't');
       if (won) {
         db.prepare('UPDATE users SET wrldcash = wrldcash + ? WHERE id = ?').run(bet, user.id);
-        return interaction.reply(`${user} placed a bet of 💵 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you win 🟦 ${(bet * 2).toLocaleString()} WRLD Balance!`);
+        return interaction.reply(`${user} placed a bet of 🟦 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you win 🟦 ${(bet * 2).toLocaleString()} WRLD Balance!`);
       } else {
         db.prepare('UPDATE users SET wrldcash = wrldcash - ? WHERE id = ?').run(bet, user.id);
-        return interaction.reply(`${user} placed a bet of 💵 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you lose this round... :c`);
+        return interaction.reply(`${user} placed a bet of 🟦 ${bet.toLocaleString()} WRLD Balance and chose ${choice === 'h' ? 'Heads' : 'Tails'}\nThe coin flips... 🟡 and you lose this round... :c`);
       }
     }
 
@@ -619,7 +618,7 @@ Balance: **${data.wrldcash.toLocaleString()} WRLD Balance**
         WHERE id = ?`)
         .run(reward, streak, now, getCrate, user.id);
       const embed = new EmbedBuilder()
-        .setDescription(`💰 Here's your daily reward 💵 **${reward.toLocaleString()} WRLD Balance!**\n🔁 Current streak: **${streak} days!**`);
+        .setDescription(`💰 Here's your daily reward 🟦 **${reward.toLocaleString()} WRLD Balance!**\n🔁 Current streak: **${streak} days!**`);
       if (getCrate) embed.addFields({ name: '📦 Weapon Crate', value: 'You received 1 weapon crate!' });
       return interaction.reply({ embeds: [embed] });
     }
