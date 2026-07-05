@@ -15,7 +15,7 @@ const {
 const Database = require('better-sqlite3');
 const { createCanvas, loadImage } = require('canvas');
 
-const TOKEN = process.env.DISCORD_TOKEN;
+const TOKEN = process.env.TOKEN;
 const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
 const DEFAULT_PREFIX = 'wrld'; // Default prefix
 
