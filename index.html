@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WRLD Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #2b1b47, #483480);
+            min-height: 100vh;
+            color: #fff;
+            padding: 2rem 1rem;
+        }
+        .header-banner {
+            background: #2b1b47;
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 3rem;
+            color: #b3c9ff;
+            margin-bottom: 1rem;
+        }
+        .header-subtitle {
+            font-size: 1.3rem;
+            color: #e0d9ff;
+            margin-bottom: 2rem;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-add {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .btn-add:hover {
+            background: #1d4ed8;
+        }
+        .btn-support {
+            background: #f24822;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        .btn-support:hover {
+            background: #dc2626;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .info-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .prefix {
+            font-weight: bold;
+            color: #f9a825;
+            font-size: 1.1rem;
+        }
+        .cmd-group {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ccccff;
+        }
+        .cmd {
+            margin: 0.7rem 0;
+            line-height: 1.5;
+        }
+        .cmd-code {
+            background: rgba(0,0,0,0.3);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #ffd740;
+        }
+        .note {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #ddd;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-banner">
+            <div class="header-title">
+                <span>🎰</span>
+                WRLD Bot
+            </div>
+            <p class="header-subtitle">Bot Ekonomi & Permainan Serbaguna untuk Server Discord</p>
+            <div class="btn-group">
+                <a class="btn-add" href="https://discord.com/oauth2/authorize?client_id=1518903748393701457&permissions=8&scope=bot%20applications.commands" target="_blank">
+                    + Tambahkan ke Server
+                </a>
+                <a class="btn-support" href="https://discord.gg/TAUTAN_SERVER_DUKUNGAN" target="_blank">
+                    🛟 Server Dukungan
+                </a>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <p>Awalan bawaan saat ini: <span class="prefix">wrld</span></p>
+            <p style="margin-top:0.5rem">Pengelola server bisa mengubahnya sesuka hati, contoh:<br>
+            <code class="cmd-code">wrld setprefix !</code> atau <code class="cmd-code">wrld setprefix bot</code><br>
+            Maksimal 10 karakter.</p>
+        </div>
+
+        <div class="cmd-group">
+            <h2>ℹ️ Bantuan</h2>
+            <div class="cmd">
+                <span class="cmd-code">wrld help</span> — Tampilkan daftar semua perintah bot
+            </div>
+        </div>
+
+        <div class="cmd-group">
+            <h2>💰 Perintah Ekonomi & Saldo</h2>
+            <div class="cmd">
+                <span class="cmd-code">wrld balance</span> / <span class="cmd-code">wrld cash</span> — Cek saldo WRLD Balance
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld daily</span> — Ambil hadiah harian
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld give @pengguna &lt;jumlah&gt;</span> — Kirim saldo ke pengguna lain
+            </div>
+        </div>
+
+        <div class="cmd-group">
+            <h2>🎮 Permainan & Taruhan</h2>
+            <div class="cmd">
+                <span class="cmd-code">wrld slot</span> / <span class="cmd-code">wrld s</span> / <span class="cmd-code">wrlds</span> &lt;jumlah/all&gt; — Main mesin slot
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld cf &lt;jumlah/all&gt; [h/t]</span> — Lempar koin, tebak kepala/ekor
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld crate</span> — Buka kotak senjata yang dimiliki
+            </div>
+        </div>
+
+        <div class="cmd-group">
+            <h2>📊 Profil & Tingkat</h2>
+            <div class="cmd">
+                <span class="cmd-code">wrld profile [@pengguna]</span> — Lihat profil lengkap
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld level [@pengguna]</span> — Lihat tingkat, XP, dan peringkat
+            </div>
+        </div>
+
+        <div class="cmd-group">
+            <h2>⚙️ Pengaturan Server (Khusus Admin)</h2>
+            <div class="cmd">
+                <span class="cmd-code">wrld setprefix &lt;teks_baru&gt;</span> — Ubah awalan perintah
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld blockchannel</span> — Matikan perintah di saluran ini
+            </div>
+            <div class="cmd">
+                <span class="cmd-code">wrld allowchannel</span> — Nyalakan kembali perintah
+            </div>
+        </div>
+
+        <div class="note">
+            Semua data saldo, tingkat, dan pengaturan tersimpan aman.<br>
+            Bot juga mendukung perintah garis miring /
+                </div>
+            </body>
+        </html>
